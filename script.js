@@ -6,6 +6,30 @@ document.addEventListener('DOMContentLoaded', () => {
     let totalPrice = 0;
     const selectedServices = new Map();
 
+    function animateNumber(from, to, duration, element) {
+        const startTime = performance.now();
+        const difference = to - from;
+
+        function update(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+
+            // Easing function for smooth animation
+            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+            const current = Math.floor(from + difference * easeOutQuart);
+
+            element.textContent = `$${current}`;
+
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            } else {
+                element.textContent = `$${to}`;
+            }
+        }
+
+        requestAnimationFrame(update);
+    }
+
     // Handle sub-service selection
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', () => {
@@ -15,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const serviceName = `${mainService} - ${subService}`;
             const price = parseFloat(checkbox.dataset.price);
             const priceElement = checkbox.closest('.sub-service').querySelector('.sub-price');
+            const oldTotal = totalPrice;
 
             if (checkbox.checked) {
                 // Select service
@@ -28,12 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 selectedServices.delete(serviceName);
             }
 
-            // Update total price display with animation
-            totalPriceElement.textContent = `$${totalPrice}`;
-            totalPriceElement.classList.add('price-pulse');
-            setTimeout(() => {
-                totalPriceElement.classList.remove('price-pulse');
-            }, 400);
+            // Animate the total price
+            animateNumber(oldTotal, totalPrice, 800, totalPriceElement);
 
             // Update selected services list
             updateSelectedServicesList();
@@ -80,8 +101,11 @@ document.addEventListener('DOMContentLoaded', () => {
             li.classList.add('empty-message');
             selectedServicesList.appendChild(li);
         } else {
+            let delay = 0;
             selectedServices.forEach((price, service) => {
                 const li = document.createElement('li');
+                li.style.animationDelay = `${delay}ms`;
+                delay += 100; // Stagger the animations
                 
                 const serviceName = document.createElement('span');
                 serviceName.textContent = service;
