@@ -28,18 +28,45 @@ document.addEventListener('DOMContentLoaded', () => {
                 selectedServices.delete(serviceName);
             }
 
-            // Update total price display
+            // Update total price display with animation
             totalPriceElement.textContent = `$${totalPrice}`;
+            totalPriceElement.classList.add('price-pulse');
+            setTimeout(() => {
+                totalPriceElement.classList.remove('price-pulse');
+            }, 400);
 
             // Update selected services list
             updateSelectedServicesList();
         });
     });
 
-    // Handle expand/collapse functionality
+    // Handle expand/collapse functionality with smooth animation
     expandButtons.forEach(button => {
         button.addEventListener('click', () => {
             const menuItem = button.closest('.menu-item');
+            const subServices = menuItem.querySelector('.sub-services');
+            
+            // Get the natural height of the sub-services
+            if (!menuItem.classList.contains('expanded')) {
+                subServices.style.height = 'auto';
+                const height = subServices.offsetHeight;
+                subServices.style.height = '0';
+                
+                // Trigger reflow
+                subServices.offsetHeight;
+                
+                // Set the final height
+                subServices.style.height = height + 'px';
+            } else {
+                subServices.style.height = subServices.offsetHeight + 'px';
+                
+                // Trigger reflow
+                subServices.offsetHeight;
+                
+                // Set height to 0
+                subServices.style.height = '0';
+            }
+            
             menuItem.classList.toggle('expanded');
         });
     });

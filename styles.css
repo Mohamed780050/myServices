@@ -34,6 +34,12 @@ h1 {
 .menu-item {
     position: relative;
     border-bottom: 1px solid #eee;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .menu-item:last-child {
@@ -53,7 +59,7 @@ h1 {
 .sub-services {
     height: 0;
     overflow: hidden;
-    transition: height 0.3s ease-out;
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     background-color: #f8f9fa;
     position: relative;
     z-index: 1;
@@ -71,7 +77,7 @@ h1 {
     border-top: 1px solid #eee;
     opacity: 0;
     transform: translateY(-10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .menu-item.expanded .sub-service {
@@ -94,6 +100,11 @@ h1 {
 .sub-service-name {
     color: #666;
     font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.sub-service:hover .sub-service-name {
+    color: #2ecc71;
 }
 
 .sub-price {
@@ -135,10 +146,21 @@ h1 {
     font-size: 1.1rem;
     color: #666;
     font-style: italic;
+    transition: color 0.3s ease;
 }
 
 .price.active {
     color: #2ecc71;
+}
+
+@keyframes pricePulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.price-pulse {
+    animation: pricePulse 0.4s ease;
 }
 
 /* Toggle Switch Styles */
@@ -147,6 +169,11 @@ h1 {
     display: inline-block;
     width: 60px;
     height: 34px;
+    transition: transform 0.2s ease;
+}
+
+.switch:hover {
+    transform: scale(1.1);
 }
 
 .switch input {
@@ -177,6 +204,7 @@ h1 {
     background-color: white;
     transition: .4s;
     border-radius: 50%;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 input:checked + .slider {
@@ -200,17 +228,18 @@ input:checked + .slider:before {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .expand-btn:hover {
     background-color: rgba(0, 0, 0, 0.05);
+    transform: scale(1.1);
 }
 
 .expand-btn i {
     font-size: 14px;
     color: #666;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .menu-item.expanded .expand-btn i {
@@ -223,6 +252,12 @@ input:checked + .slider:before {
     border-radius: 15px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     margin-top: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.total-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .total-header {
@@ -255,6 +290,7 @@ input:checked + .slider:before {
     color: #2ecc71;
     font-size: 1.6rem;
     font-weight: bold;
+    transition: color 0.3s ease;
 }
 
 .selected-services-container {
@@ -280,6 +316,16 @@ input:checked + .slider:before {
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease;
+    animation: slideIn 0.3s ease forwards;
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .selected-services-list li:hover {
