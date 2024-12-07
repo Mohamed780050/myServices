@@ -141,35 +141,89 @@ input:checked + .slider:before {
     margin-top: 2rem;
 }
 
-.total-section h2 {
-    color: #333;
-    margin-bottom: 1rem;
-}
-
-#selected-services {
-    list-style: none;
+.total-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid #f0f0f0;
     margin-bottom: 1.5rem;
 }
 
-#selected-services li {
-    padding: 0.5rem 0;
-    color: #666;
-    border-bottom: 1px solid #eee;
-}
-
-.total {
-    text-align: right;
-    padding-top: 1rem;
-    border-top: 2px solid #eee;
-}
-
-.total h3 {
+.total-header h2 {
     color: #333;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    margin: 0;
 }
 
-#total-price {
+.total-amount {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.total-label {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.total-price {
     color: #2ecc71;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.selected-services-container {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 1rem;
+    min-height: 100px;
+}
+
+.selected-services-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.selected-services-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.selected-services-list li:hover {
+    transform: translateX(5px);
+}
+
+.selected-services-list li:last-child {
+    margin-bottom: 0;
+}
+
+.selected-services-list li.empty-message {
+    color: #999;
+    font-style: italic;
+    justify-content: center;
+    background: transparent;
+    box-shadow: none;
+}
+
+.selected-services-list li.empty-message:hover {
+    transform: none;
+}
+
+.selected-services-list .service-name {
+    color: #333;
+    font-weight: 500;
+}
+
+.selected-services-list .service-price {
+    color: #2ecc71;
     font-weight: bold;
 }

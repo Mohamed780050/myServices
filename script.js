@@ -38,12 +38,22 @@ document.addEventListener('DOMContentLoaded', () => {
         if (selectedServices.size === 0) {
             const li = document.createElement('li');
             li.textContent = 'No services selected';
-            li.style.fontStyle = 'italic';
+            li.classList.add('empty-message');
             selectedServicesList.appendChild(li);
         } else {
             selectedServices.forEach((price, service) => {
                 const li = document.createElement('li');
-                li.textContent = `${service} - $${price}`;
+                
+                const serviceName = document.createElement('span');
+                serviceName.textContent = service;
+                serviceName.classList.add('service-name');
+                
+                const servicePrice = document.createElement('span');
+                servicePrice.textContent = `$${price}`;
+                servicePrice.classList.add('service-price');
+                
+                li.appendChild(serviceName);
+                li.appendChild(servicePrice);
                 selectedServicesList.appendChild(li);
             });
         }
