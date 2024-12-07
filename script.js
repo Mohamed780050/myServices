@@ -1,16 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const checkboxes = document.querySelectorAll('.service-btn');
+    const checkboxes = document.querySelectorAll('.sub-service-btn');
     const selectedServicesList = document.getElementById('selected-services');
     const totalPriceElement = document.getElementById('total-price');
+    const expandButtons = document.querySelectorAll('.expand-btn');
     let totalPrice = 0;
     const selectedServices = new Map();
 
+    // Handle sub-service selection
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', () => {
             const menuItem = checkbox.closest('.menu-item');
-            const serviceName = menuItem.querySelector('h3').textContent;
+            const mainService = menuItem.querySelector('h3').textContent;
+            const subService = checkbox.closest('.sub-service').querySelector('.sub-service-name').textContent;
+            const serviceName = `${mainService} - ${subService}`;
             const price = parseFloat(checkbox.dataset.price);
-            const priceElement = menuItem.querySelector('.price');
+            const priceElement = checkbox.closest('.sub-service').querySelector('.sub-price');
 
             if (checkbox.checked) {
                 // Select service
@@ -29,6 +33,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Update selected services list
             updateSelectedServicesList();
+        });
+    });
+
+    // Handle expand/collapse functionality
+    expandButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const menuItem = button.closest('.menu-item');
+            menuItem.classList.toggle('expanded');
         });
     });
 

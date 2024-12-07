@@ -28,23 +28,83 @@ h1 {
     border-radius: 15px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    padding: 0;
 }
 
 .menu-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem;
+    position: relative;
     border-bottom: 1px solid #eee;
-    transition: background-color 0.3s ease;
 }
 
 .menu-item:last-child {
     border-bottom: none;
 }
 
-.menu-item:hover {
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    background: white;
+    position: relative;
+    z-index: 2;
+}
+
+.sub-services {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease-out;
     background-color: #f8f9fa;
+    position: relative;
+    z-index: 1;
+}
+
+.menu-item.expanded .sub-services {
+    height: auto;
+}
+
+.sub-service {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-top: 1px solid #eee;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.menu-item.expanded .sub-service {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.menu-item.expanded .sub-service:nth-child(1) { transition-delay: 0.1s; }
+.menu-item.expanded .sub-service:nth-child(2) { transition-delay: 0.2s; }
+.menu-item.expanded .sub-service:nth-child(3) { transition-delay: 0.3s; }
+
+.sub-service-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    margin-right: 1rem;
+}
+
+.sub-service-name {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.sub-price {
+    color: #666;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.sub-price.active {
+    color: #2ecc71;
 }
 
 .item-info {
@@ -72,11 +132,9 @@ h1 {
 }
 
 .price {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     color: #666;
-    font-weight: bold;
-    transition: color 0.3s ease;
-    min-width: 70px;
+    font-style: italic;
 }
 
 .price.active {
@@ -131,6 +189,27 @@ input:focus + .slider {
 
 input:checked + .slider:before {
     transform: translateX(26px);
+}
+
+.expand-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.expand-icon {
+    font-size: 12px;
+    color: #666;
+    transition: transform 0.3s ease;
+}
+
+.menu-item.expanded .expand-icon {
+    transform: rotate(180deg);
 }
 
 .total-section {
