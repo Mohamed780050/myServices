@@ -67,8 +67,8 @@ h1 {
 .price-action {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    min-width: 200px;
+    gap: 1.5rem;
+    min-width: 160px;
 }
 
 .price {
@@ -83,23 +83,54 @@ h1 {
     color: #2ecc71;
 }
 
-.service-btn {
-    padding: 0.6rem 1.2rem;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 5px;
+/* Toggle Switch Styles */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-size: 0.9rem;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
 }
 
-.service-btn:hover {
-    background-color: #2980b9;
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
 }
 
-.service-btn.active {
+input:checked + .slider {
     background-color: #2ecc71;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2ecc71;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
 }
 
 .total-section {

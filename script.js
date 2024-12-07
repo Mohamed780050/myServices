@@ -1,29 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const buttons = document.querySelectorAll('.service-btn');
+    const checkboxes = document.querySelectorAll('.service-btn');
     const selectedServicesList = document.getElementById('selected-services');
     const totalPriceElement = document.getElementById('total-price');
     let totalPrice = 0;
-    const selectedServices = new Map(); // Changed to Map to store both name and price
+    const selectedServices = new Map();
 
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            const menuItem = button.closest('.menu-item');
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            const menuItem = checkbox.closest('.menu-item');
             const serviceName = menuItem.querySelector('h3').textContent;
-            const price = parseFloat(button.dataset.price);
+            const price = parseFloat(checkbox.dataset.price);
             const priceElement = menuItem.querySelector('.price');
 
-            if (button.classList.contains('active')) {
-                // Deselect service
-                button.classList.remove('active');
-                priceElement.classList.remove('active');
-                totalPrice -= price;
-                selectedServices.delete(serviceName);
-            } else {
+            if (checkbox.checked) {
                 // Select service
-                button.classList.add('active');
                 priceElement.classList.add('active');
                 totalPrice += price;
                 selectedServices.set(serviceName, price);
+            } else {
+                // Deselect service
+                priceElement.classList.remove('active');
+                totalPrice -= price;
+                selectedServices.delete(serviceName);
             }
 
             // Update total price display
