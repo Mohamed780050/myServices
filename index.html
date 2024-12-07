@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services Selection</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Our Services</h1>
+        <div class="services-container">
+            <div class="service-card">
+                <h3>Web Development</h3>
+                <p class="price">$100</p>
+                <p class="description">Custom website development with modern technologies</p>
+                <button class="service-btn" data-price="100">Select</button>
+            </div>
+
+            <div class="service-card">
+                <h3>Mobile App Development</h3>
+                <p class="price">$150</p>
+                <p class="description">Native mobile application development</p>
+                <button class="service-btn" data-price="150">Select</button>
+            </div>
+
+            <div class="service-card">
+                <h3>UI/UX Design</h3>
+                <p class="price">$80</p>
+                <p class="description">Professional user interface and experience design</p>
+                <button class="service-btn" data-price="80">Select</button>
+            </div>
+
+            <div class="service-card">
+                <h3>SEO Optimization</h3>
+                <p class="price">$60</p>
+                <p class="description">Search engine optimization services</p>
+                <button class="service-btn" data-price="60">Select</button>
+            </div>
+        </div>
+
+        <div class="total-section">
+            <h2>Selected Services</h2>
+            <ul id="selected-services"></ul>
+            <div class="total">
+                <h3>Total Price: <span id="total-price">$0</span></h3>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
