@@ -195,20 +195,25 @@ input:checked + .slider:before {
     background: transparent;
     border: none;
     cursor: pointer;
-    padding: 5px;
+    padding: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
 }
 
-.expand-icon {
-    font-size: 12px;
+.expand-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.expand-btn i {
+    font-size: 14px;
     color: #666;
     transition: transform 0.3s ease;
 }
 
-.menu-item.expanded .expand-icon {
+.menu-item.expanded .expand-btn i {
     transform: rotate(180deg);
 }
 
